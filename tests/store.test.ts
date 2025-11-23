@@ -2,7 +2,6 @@ import { test } from '@playwright/test';
 import { StorePage } from '../pages/storePage';
 import { LoginPage } from '../pages/loginPage';
 
-let password: string;
 
 test('user buys 5 apples and sees receipt', async ({ page }) => {
   const login = new LoginPage (page);
@@ -11,10 +10,8 @@ test('user buys 5 apples and sees receipt', async ({ page }) => {
 
   await login.goto();
   // Login
-   if (process.env.STORE_PASSWORD !== undefined ) {
-        password = process.env.STORE_PASSWORD;
-    } 
-  await login.login('Vera', password, 'consumer');
+  
+  await login.login('Vera', 'sup3rs3cr3t', 'consumer');
 
   // Product & cart flow
   await store.selectProduct('1', '5');
