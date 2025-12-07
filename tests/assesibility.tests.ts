@@ -21,3 +21,20 @@ test('store page accessibility check', async ({ page }) => {
   });
 });
 
+test('login page accessibility check', async ({ page }) => {
+  const login = new LoginPage(page);  
+  // Navigate to login
+  await login.goto();
+  // Inject axe-core
+  await injectAxe(page);
+  // Check for accessibility violations
+  await checkA11y(page, undefined, {
+    detailedReport: true, 
+    detailedReportOptions: {
+      html: true
+    }
+  });
+});
+
+
+
