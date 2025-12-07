@@ -25,7 +25,7 @@ export class LoginPage {
     await this.username.fill(username);
     await this.password.fill(password);
     await this.roleSelect.selectOption(role);
-    await this.loginButton.click();
+    await this.loginButton.click({timeout: 10000});
   }
 }
  
