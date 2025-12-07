@@ -7,11 +7,9 @@ test('user buys 5 apples and sees receipt', async ({ page }) => {
   const login = new LoginPage (page);
   const store = new StorePage(page);
   
-
   await login.goto();
   // Login
-  
-  await login.login('Vera', 'sup3rs3cr3t', 'consumer');
+ await login.login('Vera', 'sup3rs3cr3t', 'consumer');
 
   // Product & cart flow
   await store.selectProduct('1', '5');
@@ -35,14 +33,14 @@ test('verify specific product price via API and receipt', async ({ page, request
   const priceData = await response.json();
   const unitPrice = Number(priceData.price);
 
-  // Do a UI purchase of 1 Apple
+  // Do a UI purchase of 2 Apple
   const login = new LoginPage(page);
   const store = new StorePage(page);
 
   await login.goto();
   await login.login('Vera', 'sup3rs3cr3t', 'consumer');
 
-  const quantity = '1';
+  const quantity = '2';
   await store.selectProduct('1', quantity);
   await store.verifyAddToCartMessage(`Added ${quantity} x Apple to cart.`);
 
